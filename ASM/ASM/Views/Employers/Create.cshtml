@@ -1,0 +1,129 @@
+﻿@model ASM.Models.Employer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyPhone" class="control-label"></label>
+                <input asp-for="CompanyPhone" class="form-control" />
+                <span asp-validation-for="CompanyPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyEmail" class="control-label"></label>
+                <input asp-for="CompanyEmail" class="form-control" />
+                <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyAddress" class="control-label"></label>
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Your Email</label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<style>
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Màu nền xám nhạt */
+    }
+
+    /* Container */
+    .container {
+        width: 80%; /* Độ rộng container */
+        margin: 20px auto; /* Canh giữa container */
+    }
+
+    /* Header */
+    h1 {
+        color: #343a40; /* Màu chữ đen */
+        margin-bottom: 20px; /* Khoảng cách với phần tử dưới */
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 20px; /* Khoảng cách giữa các nhóm form */
+    }
+
+    /* Labels */
+    label.control-label {
+        font-weight: bold; /* Chữ in đậm */
+    }
+
+    /* Input fields */
+    input.form-control,
+    select.form-control {
+        width: 100%; /* Độ rộng 100% */
+        padding: 10px; /* Khoảng cách nội dung từ viền */
+        margin-top: 5px; /* Khoảng cách trên của input */
+        border: 1px solid #ced4da; /* Viền xám nhạt */
+        border-radius: 4px; /* Bo tròn viền */
+    }
+
+    /* Validation messages */
+    span.text-danger {
+        color: #dc3545; /* Màu chữ đỏ */
+    }
+
+    /* Submit button */
+    input[type="submit"].btn-primary {
+        background-color: #007bff; /* Màu nền xanh dương */
+        color: #fff; /* Màu chữ trắng */
+        border: none; /* Không có viền */
+        padding: 10px 20px; /* Khoảng cách giữa nội dung và viền */
+        font-size: 16px; /* Kích thước phông chữ */
+        cursor: pointer; /* Con trỏ chuột là pointer */
+        border-radius: 4px; /* Bo tròn viền */
+    }
+
+        input[type="submit"].btn-primary:hover {
+            background-color: #0056b3; /* Màu nền xanh dương nhạt khi hover */
+        }
+
+    /* Back to List link */
+    a[href*="Index"] {
+        color: #007bff; /* Màu chữ xanh dương */
+        text-decoration: none; /* Không gạch chân cho link */
+    }
+
+        a[href*="Index"]:hover {
+            color: #0056b3; /* Màu xanh dương nhạt khi hover */
+        }
+
+</style>

@@ -1,0 +1,140 @@
+﻿@model IEnumerable<ASM.Models.JobListing>
+
+@{
+    ViewData["Title"] = "JobListing";
+}
+
+<h1>JobListing</h1>
+
+<p>
+    <a asp-action="Create">Create New JobListing</a>
+</p>
+<form asp-controller="JobListings" asp-action="Search" method="get">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by Job Name" name="searchString" value="@ViewData["CurrentFilter"]">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Job Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requirement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employer.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requirement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    <a asp-controller="Employers" asp-action="Details" asp-route-id="@item.Employer.EmployerId">
+                        @Html.DisplayFor(modelItem => item.Employer.CompanyName)
+                    </a>
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <select class="form-control" onchange="changeStatus(this.value, '@item.JobListingId')">
+                            @{
+                                var selected = item.Status == "Not Active" ? "selected" : "";
+                            }
+                            <option value="Not Active" selected="@selected">Not Active</option>
+                            <option value="Active" selected="@selected">Active</option>
+                        </select>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Status)
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.JobListingId">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="ChangeStatus" asp-route-id="@item.JobListingId" asp-route-status="Active">Save</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    /* CSS để tạo khoảng cách giữa các dòng trong bảng */
+    .table tbody tr {
+        border-bottom: 1px solid #ddd; /* Tạo đường kẻ dưới mỗi dòng */
+    }
+
+        /* CSS để tạo hiệu ứng hover */
+        .table tbody tr:hover {
+            background-color: #f5f5f5; /* Đổi màu nền khi hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Làm cho dòng lồi lên */
+        }
+
+    /* CSS cho nút Create */
+    a[href*="Create"] {
+        background-color: #28a745; /* Màu xanh lá cây */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Edit */
+    a[href*="Edit"] {
+        background-color: #ffc107; /* Màu vàng */
+        color: #000; /* Màu chữ đen */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Details */
+    a[href*="Details"] {
+        background-color: #007bff; /* Màu xanh nước biển */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Delete */
+    a[href*="Delete"] {
+        background-color: #dc3545; /* Màu đỏ */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+</style>

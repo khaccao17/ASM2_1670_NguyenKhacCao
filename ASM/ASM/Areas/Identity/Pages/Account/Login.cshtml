@@ -1,0 +1,141 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Login with your account</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: #f0f0f0; /* Light grey background */
+    }
+
+    #account {
+        max-width: 360px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #ffffff; /* White background for the form */
+        border-radius: 10px; /* Rounded corners for the form */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        #account h2 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+    .form-control {
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        border: 2px solid transparent; /* No border */
+        border-radius: 20px; /* Fully rounded edges for inputs */
+        font-size: 16px;
+        background-color: #f8f8f8; /* Very light grey background for inputs */
+    }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #007bff; /* Glowing effect on focus */
+        }
+
+    .checkbox label {
+        margin-bottom: 0;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        border: none;
+        padding: 12px 20px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 20px; /* Fully rounded edges for buttons */
+        color: #fff;
+        background-image: linear-gradient(to right, #fc4a1a, #f7b733); /* Gradient background */
+        cursor: pointer;
+        display: block;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-image: linear-gradient(to right, #f7b733, #fc4a1a); /* Inverted gradient on hover */
+        }
+
+    a {
+        color: #007bff;
+        text-align: center;
+        display: block;
+        margin-top: 12px;
+        text-decoration: none; /* Removing underline from links */
+    }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+    .text-danger {
+        color: #e74c3c; /* Red color for error messages */
+        margin-top: 5px;
+    }
+
+    /* Remove underlines from all items */
+    a, a:hover, a:focus, a:active {
+        text-decoration: none;
+    }
+
+</style>

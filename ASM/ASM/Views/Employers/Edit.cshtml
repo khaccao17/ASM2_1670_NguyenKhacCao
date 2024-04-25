@@ -1,0 +1,125 @@
+﻿@model ASM.Models.Employer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Employer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployerId" />
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyPhone" class="control-label"></label>
+                <input asp-for="CompanyPhone" class="form-control" />
+                <span asp-validation-for="CompanyPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyEmail" class="control-label"></label>
+                <input asp-for="CompanyEmail" class="form-control" />
+                <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyAddress" class="control-label"></label>
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Email</label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<style>
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Màu nền xám nhạt */
+    }
+
+    /* Container */
+    .container {
+        width: 80%; /* Độ rộng container */
+        margin: 20px auto; /* Canh giữa container */
+    }
+
+    /* Header */
+    h1 {
+        color: #343a40; /* Màu chữ đen */
+        margin-bottom: 20px; /* Khoảng cách với phần tử dưới */
+        text-align: center; /* Canh giữa tiêu đề */
+    }
+
+    /* Form */
+    .form-group {
+        margin-bottom: 20px; /* Khoảng cách giữa các thành phần trong form */
+    }
+
+    label {
+        font-weight: bold; /* Chữ in đậm */
+    }
+
+    input[type="text"],
+    select {
+        width: 100%; /* Độ rộng 100% */
+        padding: 10px; /* Khoảng cách nội dung từ viền */
+        margin-top: 5px; /* Khoảng cách từng input */
+        border: 1px solid #ced4da; /* Viền xám nhạt */
+        border-radius: 4px; /* Bo tròn viền */
+    }
+
+    /* Button */
+    input[type="submit"] {
+        background-color: #007bff; /* Màu nền xanh dương */
+        color: #fff; /* Màu chữ trắng */
+        padding: 10px 20px; /* Khoảng cách giữa nội dung và viền */
+        border: none; /* Không có viền */
+        border-radius: 4px; /* Bo tròn viền */
+        cursor: pointer; /* Con trỏ chuột thành dấu nhấp chuột */
+        text-decoration: none; /* Không gạch chân cho chữ */
+    }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Màu nền xanh dương nhạt khi hover */
+        }
+
+    /* Link */
+    a {
+        color: #007bff; /* Màu xanh dương */
+        text-decoration: none; /* Không gạch chân cho link */
+    }
+
+        a:hover {
+            color: #0056b3; /* Màu xanh dương nhạt khi hover */
+        }
+
+</style>

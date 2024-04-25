@@ -1,0 +1,185 @@
+﻿@model IEnumerable<ASM.Models.Employer>
+
+@{
+    ViewData["Title"] = "Employer";
+}
+
+<h1>Employer</h1>
+
+<p>
+    <a class="btn btn-create" asp-action="Create">Create New Employer</a>
+    <a class="btn btn-warning" asp-area="" asp-controller="Applications" asp-action="ManageActive">Manage App</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+                <td>
+                    <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.EmployerId">Edit</a> |
+                    <a class="btn btn-detail" asp-action="Details" asp-route-id="@item.EmployerId">Details</a> |
+                    <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.EmployerId">Delete</a>
+                </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+<style>
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Màu nền xám nhạt */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Container */
+    .container {
+        width: 80%; /* Độ rộng container */
+        margin: 20px auto; /* Canh giữa container */
+    }
+
+    /* Header */
+    h1 {
+        color: #343a40; /* Màu chữ đen */
+        margin-bottom: 20px; /* Khoảng cách với phần tử dưới */
+        text-align: center; /* Canh giữa tiêu đề */
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-warning {
+        background-color: #ffc107; /* Màu nền vàng */
+        color: #fff; /* Màu chữ trắng */
+    }
+
+        .btn-warning:hover {
+            background-color: #ffca28; /* Màu nền vàng nhạt khi hover */
+        }
+
+    .btn-edit {
+        background-color: #007bff; /* Màu nền xanh dương */
+        color: #fff; /* Màu chữ trắng */
+    }
+
+        .btn-edit:hover {
+            background-color: #0056b3; /* Màu nền xanh dương nhạt khi hover */
+        }
+
+    .btn-detail {
+        background-color: #17a2b8; /* Màu nền xanh lam */
+        color: #fff; /* Màu chữ trắng */
+    }
+
+        .btn-detail:hover {
+            background-color: #138496; /* Màu nền xanh lam nhạt khi hover */
+        }
+
+    .btn-delete {
+        background-color: #dc3545; /* Màu đỏ */
+        color: #fff; /* Màu chữ trắng */
+    }
+
+        .btn-delete:hover {
+            background-color: #c82333; /* Màu đỏ nhạt khi hover */
+        }
+
+    /* Table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff; /* Màu nền trắng */
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            border-bottom: 1px solid #dee2e6; /* Viền đáy màu xám nhạt */
+        }
+
+        .table th {
+            background-color: #007bff; /* Màu nền xanh dương */
+            color: #fff; /* Màu chữ trắng */
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Màu nền xám nhạt */
+        }
+
+    /* Links */
+        a {
+        color: #007bff; /* Màu xanh dương */
+        text-decoration: none; /* Không gạch chân cho link */
+        }
+
+        a:hover {
+            color: #0056b3; /* Màu xanh dương nhạt khi hover */
+        }
+
+    .btn-create {
+        display: inline-block;
+        padding: 8px 12px;
+        border: 1px solid #007bff; /* Viền màu xanh nước biển */
+        border-radius: 4px;
+        background-color: #007bff; /* Màu nền xanh nước biển */
+        color: #fff; /* Màu chữ trắng */
+        text-decoration: none;
+    }
+
+        .btn-create:hover {
+            background-color: #0056b3; /* Màu nền xanh dương nhạt khi hover */
+        }
+</style>

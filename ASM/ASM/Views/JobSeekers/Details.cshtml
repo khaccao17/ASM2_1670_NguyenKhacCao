@@ -1,0 +1,131 @@
+﻿@model ASM.Models.JobSeeker
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1>Details</h1>
+    <div class="card">
+        <h4 class="card-title">Seekers</h4>
+        <div class="card-content">
+            <dl>
+                <div class="row">
+                    <dt class="col-sm-5">Full name:</dt>
+                    <dd class="col-sm-7">@Model.Fullname</dd>
+                </div>
+@*                 <div class="row">
+                    <dt class="col-sm-5">Email:</dt>
+                    <dd class="col-sm-7">@Model.Email</dd>
+                </div> *@
+                <div class="row">
+                    <dt class="col-sm-5">Phone:</dt>
+                    <dd class="col-sm-7">@Model.Phone</dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-5">Address:</dt>
+                    <dd class="col-sm-7">@Model.Address</dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-5">Skill:</dt>
+                    <dd class="col-sm-7">@Model.Skill</dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-5">Experience:</dt>
+                    <dd class="col-sm-7">@Model.Experience</dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-5">Profile CV:</dt>
+                    <dd class="col-sm-7"><img class="flex-shrink-0 img-fluid border rounded" src="@Html.DisplayFor(model => model.UrlImage)" alt="" style="width: 150px; height: 150px;"></dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-5">Your Email:</dt>
+                    <dd class="col-sm-7">@Model.User.Email</dd>
+                </div>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group">
+                <a class="btn" asp-action="Index">Back to List</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.JobSeekerId">Edit</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    h1 {
+        color: #343a40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .card {
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .card-title {
+        color: #007bff;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .card-content {
+        margin-bottom: 20px;
+    }
+
+        .card-content dt {
+            font-weight: bold;
+            \
+        }
+
+        .card-content dd {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+
+
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+</style>

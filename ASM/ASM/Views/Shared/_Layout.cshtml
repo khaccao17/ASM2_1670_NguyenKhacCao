@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ASM.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dPRv4DXs3yfuG0kT/4cxR7IIEXr7nSMRxWHDsTKSzF9BLP/joM7DmYZXfDCuFAuT1zCsmvIU7vAcOyRiRhPZxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-success border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">FPTJob Match</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Employers" asp-action="Index">Employer</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                JobListing
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="JobListings" asp-action="Index">View Listings</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="JobListings" asp-action="Manage">Manage Listings</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="JobSeekers" asp-action="Index">JobSeeker</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Applications
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Applications" asp-action="Index">View Applications</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Applications" asp-action="Manage">Manage Applications</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<style>
+    /* Đặt màu nền cho navbar */
+    .navbar {
+        background-color: #187E4C;
+    }
+
+    /* Định dạng các thẻ li trong navbar */
+    .navbar-nav .nav-item {
+        font-weight: bold;
+        margin-right: 10px; /* Khoảng cách giữa các mục */
+    }
+
+    /* Định dạng các liên kết trong navbar */
+    .navbar-nav .nav-link {
+        padding: 10px; /* Khoảng cách giữa các liên kết */
+        color: #ffffff; /* Màu chữ */
+        font-size: 16px; /* Cỡ chữ */
+        font-family: Arial, sans-serif; /* Font chữ */
+    }
+
+        /* Định dạng liên kết khi hover */
+        .navbar-nav .nav-link:hover {
+            color: #ffffff; /* Màu chữ khi hover */
+            background-color: #135e37; /* Màu nền khi hover */
+        }
+
+    /* Định dạng liên kết active */
+    .navbar-nav .nav-item.active .nav-link {
+        color: #ffffff; /* Màu chữ */
+        background-color: #135e37; /* Màu nền */
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+</style>

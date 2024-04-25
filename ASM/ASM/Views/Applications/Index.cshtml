@@ -1,0 +1,138 @@
+﻿@model IEnumerable<ASM.Models.Application>
+
+@{
+    ViewData["Title"] = "Application";
+}
+
+<h1>Application</h1>
+<div>
+    <form asp-controller="Applications" asp-action="Search" method="get">
+        <input type="text" name="searchString" placeholder="Search by description" />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CoverLetter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobListing)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Actions</th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.JobSeeker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusApp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.StatusApp != "Not Active")
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoverLetter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobListing.Name)
+                    </td>
+                    @if (User.IsInRole("Employer"))
+                    {
+                        <td>
+                            <form asp-action="ConfirmJob" asp-route-id="@item.JobListingId" method="post">
+                                <button type="submit" class="btn btn-success">Confirm</button>
+                            </form>
+                            <form asp-action="RejectJob" asp-route-id="@item.JobListingId" method="post">
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                            </form>
+                        </td>
+                    }
+                    <td>
+                        <a asp-controller="JobSeekers" asp-action="Details" asp-route-id="@item.JobSeeker.JobSeekerId">
+                            @Html.DisplayFor(modelItem => item.JobSeeker.Fullname)
+                        </a>
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.StatusApp)
+                    </th>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.ApplicationId">Edit</a> |*@
+                        <a asp-action="Details" asp-route-id="@item.ApplicationId">Details</a>
+                        @*<a asp-action="Delete" asp-route-id="@item.ApplicationId">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<style>
+    /* CSS để tạo khoảng cách giữa các dòng trong bảng */
+    .table tbody tr {
+        border-bottom: 1px solid #ddd; /* Tạo đường kẻ dưới mỗi dòng */
+    }
+
+        /* CSS để tạo hiệu ứng hover */
+        .table tbody tr:hover {
+            background-color: #f5f5f5; /* Đổi màu nền khi hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Làm cho dòng lồi lên */
+        }
+
+    /* CSS cho nút Create */
+    a[href*="Create"] {
+        background-color: #28a745; /* Màu xanh lá cây */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Edit */
+    a[href*="Edit"] {
+        background-color: #ffc107; /* Màu vàng */
+        color: #000; /* Màu chữ đen */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Details */
+    a[href*="Details"] {
+        background-color: #007bff; /* Màu xanh nước biển */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+
+    /* CSS cho nút Delete */
+    a[href*="Delete"] {
+        background-color: #dc3545; /* Màu đỏ */
+        color: #fff; /* Màu chữ trắng */
+        padding: 5px 10px; /* Tăng khoảng cách giữa nút và văn bản */
+        border-radius: 4px; /* Bo tròn viền của nút */
+        text-decoration: none;
+    }
+</style>

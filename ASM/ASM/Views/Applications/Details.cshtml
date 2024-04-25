@@ -1,0 +1,148 @@
+﻿@model ASM.Models.Application
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="container">
+    <div class="card">
+        <h4 class="card-title">Application</h4>
+        <div class="card-content">
+            <dl class="row">
+                <div class="col-sm-5">
+                    <dt>Cover Letter:</dt>
+                </div>
+                <div class="col-sm-7">
+                    <dd>@Model.CoverLetter</dd>
+                </div>
+                <div class="col-sm-5">
+                    <dt>Description:</dt>
+                </div>
+                <div class="col-sm-7">
+                    <dd>@Model.Description</dd>
+                </div>
+                <div class="col-sm-5">
+                    <dt>Application Date:</dt>
+                </div>
+                <div class="col-sm-7">
+                    <dd>@Model.ApplicationDate</dd>
+                </div>
+                <div class="col-sm-5">
+                    <dt>Job Listing:</dt>
+                </div>
+                <div class="col-sm-7">
+                    <dd>@Model.JobListing.Name</dd>
+                </div>
+                <div class="col-sm-5">
+                    <dt>Job Seeker:</dt>
+                </div>
+                <div class="col-sm-7">
+                    <dd>@Model.JobSeeker.Fullname</dd>
+                </div>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa; /* Màu nền xám nhạt */
+    }
+
+    /* Container */
+    .container {
+        width: 80%; /* Độ rộng container */
+        margin: 20px auto; /* Canh giữa container */
+    }
+
+    /* Header */
+    h1 {
+        color: #343a40; /* Màu chữ đen */
+        margin-bottom: 20px; /* Khoảng cách với phần tử dưới */
+        text-align: center; /* Canh giữa tiêu đề */
+    }
+
+    /* Card */
+    .card {
+        border: 1px solid #dee2e6; /* Đường viền 1px màu xám */
+        border-radius: 10px; /* Bo tròn góc */
+        background-color: #fff; /* Màu nền trắng */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+        padding: 20px; /* Khoảng cách nội dung từ viền */
+        margin-bottom: 20px; /* Khoảng cách với phần tử dưới */
+    }
+
+        .card h4 {
+            color: #007bff; /* Màu chữ xanh dương */
+            margin-bottom: 15px; /* Khoảng cách với phần tử dưới */
+            font-size: 1.5em; /* Cỡ chữ lớn hơn */
+        }
+
+    .row {
+        margin-bottom: 15px; /* Khoảng cách giữa các hàng trong chi tiết */
+    }
+
+    .col-sm-5 {
+        font-weight: bold; /* Chữ in đậm */
+    }
+
+    .col-sm-7 {
+        margin-top: 5px; /* Khoảng cách từng chi tiết */
+    }
+
+    /* Links */
+    a {
+        color: #007bff; /* Màu xanh dương */
+        text-decoration: none; /* Không gạch chân cho link */
+        transition: color 0.3s ease; /* Hiệu ứng màu khi hover */
+    }
+
+        a:hover {
+            color: #0056b3; /* Màu xanh dương nhạt khi hover */
+        }
+
+    /* Button */
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between; /* Căn giữa phần tử bên trong */
+        align-items: center;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 10px; /* Khoảng cách giữa các nút */
+    }
+
+</style>

@@ -1,0 +1,148 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+@*             <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="Firstname" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.FirstName">First Name</label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="Lastname" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.LastName">Last Name</label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div> *@
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select" aria-required="true">
+                    <option disabled selected>Select Role</option>
+                </select>
+                <span asp-validation-for="Input.Role" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    /* Reset for form styles */
+    /* Reset for form styles */
+    input, select, button {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 2px solid #eaeaea; /* Lightened border color */
+        border-radius: 6px; /* Slightly rounded borders for a soft look */
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    /* Styles for floating labels */
+    label {
+        display: block;
+        margin-bottom: .5rem;
+        color: #5e5e5e; /* Softened label color */
+    }
+
+    /* Visibility toggles for floating labels */
+    .form-control:placeholder-shown + label {
+        visibility: visible; /* Make label visible when placeholder is shown */
+    }
+
+    .form-control:focus + label {
+        visibility: visible; /* Always make label visible when input is focused */
+    }
+
+    /* Floating label style */
+    .form-floating {
+        position: relative;
+    }
+
+        .form-floating label {
+            position: absolute;
+            top: 50%; /* Center label vertically */
+            left: 15px;
+            transform: translateY(-50%); /* Adjust vertical position */
+            z-index: 3;
+            pointer-events: none;
+            transition: all .1s ease-in-out;
+            background: #f8f9fa; /* Light background to blend into the input field */
+            padding: 0 5px;
+        }
+
+        .form-floating .form-control:focus + label,
+        .form-floating .form-control:not(:placeholder-shown) + label {
+            top: 0; /* Move label to top when input is focused or has value */
+            font-size: 13px; /* Smaller size for floating label */
+            color: #f77f00; /* Vibrant orange for active label state */
+            background: transparent; /* Make background transparent when label floats */
+        }
+
+    /* Primary button style adjustments */
+    .btn-primary {
+        background-color: #26547c; /* Deep blue background */
+        border: none; /* No border for a cleaner look */
+    }
+
+        .btn-primary:hover {
+            background-color: #fc5185; /* Bright pink for hover */
+        }
+
+    /* Row and column adjustments for centering */
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .col-md-4 {
+        background: #fff; /* White background for contrast */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* More pronounced shadow for depth */
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 25px;
+    }
+
+        /* Specific color for form titles to add uniqueness */
+        h2::after {
+            content: '';
+            display: block;
+            height: 4px;
+            width: 80px;
+            background: #f77f00; /* Horizontal bar color */
+            margin: 8px auto 20px; /* Center the bar and provide spacing */
+        }
+
+</style>

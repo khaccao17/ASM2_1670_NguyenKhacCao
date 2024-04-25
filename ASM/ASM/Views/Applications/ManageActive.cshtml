@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ASM.Models.Application>
+
+@{
+    ViewData["Title"] = "Applicaton";
+}
+
+<h1>Applicaton</h1>
+
+<p>
+    <a asp-action="Create">Create New Applicaton</a>
+</p>
+<div>
+    <form asp-controller="Applications" asp-action="Search" method="get">
+        <input type="text" name="searchString" placeholder="Search by description" />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CoverLetter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobListing)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Actions</th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.JobSeeker)
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoverLetter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobListing.Name)
+                </td>
+               
+                <td>
+                    <a asp-controller="JobSeekers" asp-action="Details" asp-route-id="@item.JobSeeker.JobSeekerId">
+                        @Html.DisplayFor(modelItem => item.JobSeeker.Fullname)
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.ApplicationId" method="post" onsubmit="return confirm('Are you sure you want to reject this job?')">
+                        <button type="submit" class="btn btn-link" style="padding: 0; margin: 0; color: red; ">Reject</button>
+                    </form>
+                    @if (User.IsInRole("Employer"))
+                    {
+                        <form asp-action="ApproveApp" asp-route-id="@item.ApplicationId" method="post">
+                            <button type="submit" class="btn btn-link" style="padding: 0; margin: 0; color: green;">Approve</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.ApplicationId">Edit</a> |*@
+                    <a asp-action="Details" asp-route-id="@item.ApplicationId">Details</a> |
+                    @*<a asp-action="Delete" asp-route-id="@item.ApplicationId">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
